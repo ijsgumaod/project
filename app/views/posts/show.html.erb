@@ -1,0 +1,86 @@
+<div class="container">
+	<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-8">
+      <div class="panel panel-default">
+        <div class="panel-body">
+					<li class='media'>
+						<div class='media-left'>
+							<% if User.find(@post.user_id).avatar? %>
+								<%= image_tag User.find(@post.user_id).avatar.thumb.url, size: '50', class: 'img-circle' %>
+							<% end %>
+						</div>
+						<div class='media-body'>
+							<h4 class='media-heading'>
+								<b><%= User.find(@post.user_id).name %></b>
+								<br>
+								<small class='text-muted'>
+									<em>posted <%= time_ago_in_words(@post.created_at) %> ago. <span class='glyphicon glyphicon-time'></span></em>
+								</small>
+							</h4>
+						</div>
+						<div class='media-right'>
+							<% if current_user.id == @post.user_id %>
+	              <%= link_to "<span class=\'glyphicon glyphicon-wrench\'></span>".html_safe, edit_user_post_path(current_user, @post), class: 'a-con' %>
+	              <%= link_to "<span class=\'glyphicon glyphicon-trash\'></span>".html_safe, user_post_path(@post), class: 'a-con',
+	                              method: :delete,
+	                              data: { confirm: 'Are you sure?' } %>
+	            <% end %>
+						</div>
+					</li>
+          <br>
+						<p class='lead text-justify'>
+							<%= @post.body %><br></br>
+							<div class='text-center'>
+								<%= image_tag @post.picture.url, class: 'img-thumbnail' if @post.picture? %>
+							</div>
+						</p>
+            <hr></hr>
+            <!--<div class="pull-left">
+							<h5><b>Comments:</b></h5>
+						</div>
+						<div class="pull-right">
+						</div>-->
+
+						<!-- Fluid width widget -->
+							<div class="panel-heading">
+									<h3 class="panel-title">
+											<span class="glyphicon glyphicon-comment"></span> 
+											Recent Comments
+									</h3>
+							</div>
+							<div class="panel-body">
+								<ul class="media-list">
+									<% @post.comments.each do |c| %>
+									<li class="media">
+											<div class="media-left">
+												<%= image_tag User.find(c.user_id).avatar.thumb.url, size: '50' ,class: 'd-flex mr-3 img-circle', alt: 'Avatar' if User.find(c.user_id).avatar?%>
+											</div>
+											<div class="media-body">
+													<h5 class="media-heading">
+															<b><%= User.find(c.user_id).name %></b>
+															<br>
+															<small class='text-muted'>
+																<em>commented <%= time_ago_in_words(c.created_at) %> ago. </em><span class='glyphicon glyphicon-time'></span>
+															</small>
+													</h5>
+													<p class='text-justify'>
+															<%= c.body %>
+													</p>
+											</div>
+									</li>
+									<% end %>
+								</ul>
+							</div>
+							<!-- End fluid width widget -->
+						<%= render 'comments/commentForm' %>
+      	</div>
+    	</div>
+    <div class="col-md-2">
+
+    </div>
+  </div>
+</div>
+</div>

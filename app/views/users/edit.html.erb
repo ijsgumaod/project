@@ -1,0 +1,9 @@
+<% provide(:title, 'Update Account') %>
+<% provide(:button_form, 'Update') %>
+<% provide(:url, user_path(current_user)) %>
+<% provide(:method, 'PUT') %>
+
+<div class='container'>
+  <h1 class='text-center'>UPDATE</h1>
+  <%= render 'form' %>
+</div>

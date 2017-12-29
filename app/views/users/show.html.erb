@@ -1,0 +1,68 @@
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-5'>
+      <div class='media'>
+        <div class='media-left'>
+          <%= image_tag @user.avatar.url, size: '180', class: 'img img-responsive img-thumbnail', alt: 'avatar' if @user.avatar? %>
+        </div>
+        <div class='media-right'>
+          <div class='text-uppercase'><b><%= @user.name %></b></div>
+          <div class='small text-muted'><%= @user.email %></div>
+          <hr>
+          <div class='media'>
+            <div class='media-left'>
+              Followers <span class='badge badge-important'>5</span>
+              <p>Posts <span class='badge badge'><%= @user.posts.count %></span></p>
+            </div>
+            <div class='media-right'>
+              Followed <span class='badge badge-success'>9</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr></hr>
+
+      <ul class="nav nav-pills nav-stacked admin-menu" >
+        <li class="active"><a href="" data-target-id="profile"><i class="glyphicon glyphicon-user"></i> Profile</a></li>
+        <li><a href="" data-target-id="change-password"><i class="glyphicon glyphicon-lock"></i> Change Password</a></li>
+        <li><a href="" data-target-id="settings"><i class="glyphicon glyphicon-cog"></i> Settings</a></li>
+        <li><a href="" data-target-id="logout"><i class="glyphicon glyphicon-log-out"></i> Logout</a></li>
+      </ul>
+
+    </div>
+    <div class='col-md-7'>
+      <% @user.posts.each do |post| %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <li class='media'>
+            <div class='media-left'>
+              <%= image_tag @user.avatar.thumb.url, size: '50', class: 'img-circle', alt: 'Avatar' if @user.avatar?%>
+            </div>
+            <div class='media-body'>
+              <h4 class='media-heading'>
+                <b><%= @user.name %></b>
+                <br>
+                <small class='text-muted'>
+                  <em>posted <%= time_ago_in_words(post.created_at) %> ago. <span class='glyphicon glyphicon-time'></span></em>
+                </small>
+              </h4>
+              <center><h4 class='text-uppercase'><%= post.title %></h4></center>
+            </div>
+            <div class='media-right'>
+              <%= link_to 'more...', user_post_path(current_user, post), class: 'a-con' %>
+            </div>
+          </li>
+          <br>
+          <p class="lead text-justify">
+            <%= post.body %><br></br>
+            <div class='text-center'>
+              <%= image_tag post.picture.url, class: 'img-thumbnail' if post.picture? %>
+            </div>
+          </p>
+          <hr></hr>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

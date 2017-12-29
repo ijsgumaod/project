@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                                <tr>
+                                <th><span>User</span></th>
+                                <th><span>Created</span></th>
+                                <th><span>Last Login</span></th>
+                                <th class="text-center"><span>Online</span></th>
+                                <th><span>Email</span></th>
+                                <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <% @user.each do |u| %>
+                                <tr>
+                                    <td>
+                                        <%= image_tag u.avatar.thumb.url, size: '50', class: 'img-circle', alt: 'Avatar' if u.avatar? %>
+                                        <%= link_to u.name, user_path(u.id), class: 'a-con' %>
+                                        <small class='text-muted'> - <span class="user-subhead"><%= u.role %></span></small>
+                                    </td>
+                                    <td><%= time_ago_in_words(u.created_at) %></td>
+                                    <td><%= time_ago_in_words(u.last_login_at) %></td>
+                                    <td class="text-center">
+                                        <span class="label label-default"><%= time_ago_in_words(u.last_activity_at) %> </span>
+                                    </td>
+                                    <td>
+                                        <a href="#"><%= u.email %> </a>
+                                    </td>
+                                    <td style="width: 20%;">
+                                        <%= link_to "<span class=\'glyphicon glyphicon-pencil\'></span>".html_safe, edit_user_admin_path(current_user, u.id), class: 'a-con table-link' %></li>
+                                        <a href="#" class="table-link danger">
+                                            <span class="fa-stack">
+                                                <i class="fa fa-square fa-stack-2x"></i>
+                                                <%= link_to "<i class=\'glyphicon glyphicon-trash\'></i>".html_safe, user_admin_path(current_user, u), class: 'a-con', method: :delete, data: {confirm: 'Are you sure?'} %>
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                              <% end %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
