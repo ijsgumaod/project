@@ -22,7 +22,6 @@ class PostsController < ApplicationController
 
     if @user.posts.create(post_params)
       flash[:success] = "New Post created!"
-      respond_with(@user)
       redirect_to user_posts_path
     else
       flash[:warning] = "Unsuccessful.."
