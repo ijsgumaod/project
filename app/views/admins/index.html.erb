@@ -1,1 +1,41 @@
-<%= render 'current_users' %>
+<!--<%= render 'current_users' %>-->
+<script type='text/x-template' id='users-row'>
+  <tr>
+    <td>{{ user.name }}</td>
+    <td>{{ user.created_at }}</td>
+    <td>{{ user.last_login_at }}</td>
+    <td>{{ user.last_activity_at }}</td>
+    <td>{{ user.email }}</td>
+  </tr>
+</script>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="main-box no-header clearfix">
+                <div class="main-box-body clearfix">
+                    <div id='users'>
+                        <table class="table user-list">
+                            <thead>
+                                <tr>
+                                <th><span>User</span></th>
+                                <th><span>Created</span></th>
+                                <th><span>Last Login</span></th>
+                                <th class="text-center"><span>Online</span></th>
+                                <th><span>Email</span></th>
+                                <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                              <tr is='users-row'
+                                  v-for='user in users'
+                                  :user='user'>
+                              </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,5 +14,4 @@ Rails.application.routes.draw do
 
   resources :sessions
   get '/login', to: 'sessions#new', as: :login
-
 end

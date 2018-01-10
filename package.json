@@ -1,5 +1,30 @@
 {
   "name": "project",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "^3.2.0",
+    "axios": "^0.17.1",
+    "bootstrap": "4.0.0-beta.2",
+    "bootstrap-vue": "^1.4.0",
+    "caniuse-lite": "^1.0.30000697",
+    "coffeescript": "1.12.7",
+    "css-loader": "*",
+    "jquery": "1.9.1",
+    "popper.js": "1.12.3",
+    "postcss-cssnext": "3.0.2",
+    "progressive-image": "^1.2.0",
+    "sass-loader": "^6.0.6",
+    "vue": "^2.5.13",
+    "vue-cli": "^2.9.2",
+    "vue-loader": "^13.6.2",
+    "vue-template-compiler": "^2.5.13",
+    "webpack-dev-middleware": "1.12.2",
+    "webpack-watcher": "^0.2.3"
+  },
+  "devDependencies": {
+    "global": "^4.3.2",
+    "webpack": "^3.0.0",
+    "webpack-config": "^7.5.0",
+    "webpack-dev-server": "2.9.7"
+  }
 }

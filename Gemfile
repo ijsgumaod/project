@@ -68,5 +68,13 @@ gem 'sorcery', '~> 0.11.0'
 gem 'validates_email_format_of'
 # Gem for Image upload
 gem 'carrierwave', '~> 1.1.0'
+gem 'carrierwave-imageoptimizer'
 gem 'mini_magick', '~> 4.7.0'
 gem 'fog', '~> 1.40.0'
+#vue.js
+gem "jquery-rails"
+gem 'json'
+gem 'jwt', '1.5.6'
+#webpack
+gem 'foreman'
+gem 'webpacker'

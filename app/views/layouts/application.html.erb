@@ -3,46 +3,46 @@
   <head>
     <title>Project</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <%= javascript_pack_tag 'frontend-vue' %>
   </head>
 
   <body>
-    <nav class='navbar navbar-findcond navbar-fixed-top' role="navigation">
-      <div class="container">
-          <div class="navbar-header">
-            <a href='#' class='navbar-brand'>Magical</a>
-          </div>
+    <div class='header'>
+      <nav class='navbar navbar-findcond navbar-fixed-top' role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+              <a href='#' class='navbar-brand'>Magical</a>
+            </div>
 
-          <div id="navbar">
-            <ul class="nav navbar-nav">
-            <% if current_user %>
-                  <li><%= link_to 'Posts', user_posts_path(current_user) %></li>
-                  <li><a href='#'>About</a></li>
-            <% else %>
-                  <li><%= link_to 'Create Account', sign_up_path%></li>
-                  <li><%= link_to "<span class=\'glyphicon glyphicon-log-in\'></span> Login".html_safe, login_path %></li>
-            <% end %>
-            </ul>
-            <% if current_user%>
-              <ul class="nav navbar-nav navbar-right">
-                <% if current_user.admin? %>
-                  <li><%= link_to "<span class=\'glyphicon glyphicon-book\'></span> Admin Management".html_safe, user_admins_path(current_user) %></li>
-                <% end %>
-                <li><%= link_to "<span class=\'glyphicon glyphicon-wrench\'></span> Account Settings".html_safe, edit_user_path(current_user) %></li>
-                <li><%= link_to "<span class=\'glyphicon glyphicon-user\'></span>".html_safe+ ' ' + current_user.name, user_path(current_user), class: 'dock-item' %></li>
-                <li><%= link_to "<span class=\'glyphicon glyphicon-log-out\'></span> Logout".html_safe, session_path(session),
-                                method: :delete,
-                                data: { confirm: 'Are you sure?' } %></li>
+            <div id="navbar">
+              <ul class="nav navbar-nav">
+              <% if current_user %>
+                    <li><%= link_to 'Posts', user_posts_path(current_user) %></li>
+                    <li><a href='#'>About</a></li>
+              <% else %>
+                    <li><%= link_to 'Create Account', sign_up_path%></li>
+                    <li><%= link_to "<span class=\'glyphicon glyphicon-log-in\'></span> Login".html_safe, login_path %></li>
+              <% end %>
               </ul>
-            <% end %>
-          </div>
-      </div>
-    </nav>
+              <% if current_user%>
+                <ul class="nav navbar-nav navbar-right">
+                  <% if current_user.admin? %>
+                    <li><%= link_to "<span class=\'glyphicon glyphicon-book\'></span> Admin Management".html_safe, user_admins_path(current_user) %></li>
+                  <% end %>
+                  <li><%= link_to "<span class=\'glyphicon glyphicon-wrench\'></span> Account Settings".html_safe, edit_user_path(current_user) %></li>
+                  <li><%= link_to "<span class=\'glyphicon glyphicon-user\'></span>".html_safe+ ' ' + current_user.name, user_path(current_user), class: 'dock-item' %></li>
+                  <li><%= link_to "<span class=\'glyphicon glyphicon-log-out\'></span> Logout".html_safe, session_path(session),
+                                  method: :delete,
+                                  data: { confirm: 'Are you sure?' } %></li>
+                </ul>
+              <% end %>
+            </div>
+        </div>
+      </nav>
+    </div>
 
-    <div class="container" style="margin-top:70px;">
+    <div class="body" style="margin-top:70px;">
         <% flash.each do |key, value| %>
           <div class="alert alert-<%= key %>">
             <%= value %>
@@ -52,15 +52,17 @@
 
     </div>
 
-    <div class="container">
-      <div class="row">
-      <hr></hr>
-      <center class="center-con">
-        <a href="#">About</a> | <a href="#">Terms of Service</a> | <a href="#">Privacy</a>
-        <p style="color: #9d9d9d;margin-top:5px;margin-bottom:10px;" class="text-center muted">© 2017 Magical Project. All rights reserved</p>
-        </div>
-        <br></br>
-      </center>
+    <div class='footer'>
+      <div class='container'>
+        <center class="center-con">
+          <a href="#">About</a> |
+          <a href="#">Terms of Service</a> |
+          <a href="#">Privacy</a>
+          <p style="color: #9d9d9d;margin-top:5px;margin-bottom:10px;" class="text-center muted">© 2017 Magical Project. All rights reserved </p>
+        </center>
+      </div>
     </div>
+
+    <%= javascript_include_tag 'application' %>
   </body>
 </html>

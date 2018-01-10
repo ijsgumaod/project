@@ -1,7 +1,12 @@
 class PostsController < ApplicationController
   def index
-    @post = Post.all
-    @user = User.all
+    @post = Post.joins(:user).select('posts.id, posts.user_id, posts.body, posts.created_at, users.name, users.role, users.avatar')
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @post }
+    end
+
     #@post = @post.order("created_at DESC")
     #@user_thumb = current_user.find(Post.find_by(user_id).avatar.thumb.url if User.find(@post.user_id).avatar?
   end
@@ -17,6 +22,7 @@ class PostsController < ApplicationController
 
     if @user.posts.create(post_params)
       flash[:success] = "New Post created!"
+      respond_with(@user)
       redirect_to user_posts_path
     else
       flash[:warning] = "Unsuccessful.."

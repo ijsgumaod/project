@@ -1,6 +1,14 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, except: [:destroy]
 
+  def new
+    @user_list = User.all
+    respond_to do |format|
+      format.html
+      format.json { render :json => @user_list }
+    end
+  end
+
   def create
     if login(params[:email], params[:password], params[:remember_me])
 

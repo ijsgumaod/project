@@ -22,4 +22,8 @@ class User < ApplicationRecord
     def image_size_validation
       errors[:avatar] << "should be less than 5mb" if avatar.size > 5.megabytes
     end
+
+    def image_url
+      store_dir[:avatar]
+    end
 end
